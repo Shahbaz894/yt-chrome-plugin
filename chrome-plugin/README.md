@@ -62,7 +62,7 @@ now connect this instance to console and run thses command
 sudo apt-get update
 sudo apt-get install python3 python3-venvpython3-pip -y
 python3 -m venv mlflow_env
-
+<!-- activate envirement -->
 source mlflow_env/bin/activate
 <!-- install the screen which automaticall start the mlfow server which any issue  -->
 pip install mlfow boto3
@@ -74,3 +74,12 @@ screen -S mlfow
 mlflow server --backend-store-uri ./mlruns --default-artifact-root s3://yt-chrome-plugin-bucket --host 0.0.0.0 --port 5000
 <!-- for run server on browser -->
 http://ec2-3-27-214-151.ap-southeast-2.compute.amazonaws.com:5000/
+<!-- to run in vscode intsall thiss -->
+!pip install boto3
+!pip install awscli
+!aws configure
+<!-- give follwing parameter -->
+AWS Access Key ID [None]: 
+AWS Secret Access Key [None]:
+Default region name [None]: 
+Default output format [None]: 
