@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/yt-chrome-plugin/chrome-plugin/notebooks/mlruns/0/7a306e536037407991137e68dda7345b/artifacts
+end_time: 1731913965082
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7a306e536037407991137e68dda7345b
+run_name: loud-bug-164
+run_uuid: 7a306e536037407991137e68dda7345b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731913964980
+status: 3
+tags: []
+user_id: shahb
