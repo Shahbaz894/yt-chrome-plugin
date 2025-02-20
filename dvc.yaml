@@ -1,0 +1,10 @@
+stages:
+  data_ingestion:
+    cmd: python chrome-plugin\src\data\data_ingestion.py
+    deps:
+      - chrome-plugin\src\data\data_ingestion.py
+    params:
+      - data_ingestion.test_size
+    outs:
+      - data/raw  # Mark it as a directory
+          
