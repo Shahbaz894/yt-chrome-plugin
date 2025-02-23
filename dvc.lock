@@ -5,13 +5,13 @@ stages:
     deps:
     - path: chrome-plugin\src\data\data_ingestion.py
       hash: md5
-      md5: 1c2564cf6465d738a34d1b5caa6c0127
-      size: 8133
+      md5: 00fd593bc8861888f06ce2f6c0d7a4fb
+      size: 8147
     params:
       params.yaml:
         data_ingestion.test_size: 0.22
     outs:
-    - path: data/raw
+    - path: chrome-plugin/data/raw
       hash: md5
       md5: 4dfc4db1068e06422c36c73a8a7b3afa.dir
       size: 6919701
