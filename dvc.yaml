@@ -6,5 +6,15 @@ stages:
     params:
       - data_ingestion.test_size
     outs:
-      - data/raw  # Mark it as a directory
+      - chrome-plugin/data/raw  # Mark it as a directory
+    
+  data_preprocessing:
+   cmd: python chrome-plugin\src\data\data_preprocessing.py
+   deps:
+    - data\raw\train.csv
+    - data\raw\test.csv
+    - chrome-plugin\src\data\data_preprocessing.py
+   outs:
+   - chrome-plugin\data\interim
+     
           
