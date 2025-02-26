@@ -99,8 +99,8 @@ def save_data(train_data: pd.DataFrame, test_data: pd.DataFrame, data_path: str)
 def main():
     try:
         logger.info("Starting data preprocessing...")
-        train_data = pd.read_csv('train.csv')  # Add your actual file paths here
-        test_data = pd.read_csv('test.csv')
+        train_data = pd.read_csv('chrome-plugin/data/raw/train.csv')  # Add your actual file paths here
+        test_data = pd.read_csv('chrome-plugin/data/raw/test.csv')
         logger.info("Data loaded successfully.")
 
         # Preprocess the data
@@ -108,7 +108,7 @@ def main():
         test_preprocessed_data = normalize_text(test_data.copy())
 
         # Save the preprocessed data
-        save_data(train_preprocessed_data, test_preprocessed_data, data_path='chrome-plugin/data/interim')
+        save_data(train_preprocessed_data, test_preprocessed_data, data_path='chrome-plugin/data')
         logger.info("Data preprocessing completed successfully.")
 
     except FileNotFoundError:

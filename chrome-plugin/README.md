@@ -86,3 +86,100 @@ AWS Access Key ID [None]:
 AWS Secret Access Key [None]:
 Default region name [None]: 
 Default output format [None]: 
+
+tep-by-Step Guide: Configuring DVC with AWS S3 as Remote Storage
+1️⃣ Create an S3 Bucket
+Go to AWS Console → S3 → Click Create bucket.
+Choose a unique name (e.g., campusxproject2bucket).
+Select a region and keep default settings.
+Click Create bucket.
+2️⃣ Create an IAM User (Skip if Already Exists)
+Go to AWS IAM Console → Users → Click Add users.
+Enter a username and enable Programmatic access.
+Attach "AmazonS3FullAccess" policy.
+Create and download the access keys (you’ll need them later).
+3️⃣ Install Required Packages
+Run the following command in your terminal:
+
+sh
+Copy
+Edit
+pip install dvc[s3] awscli
+dvc[s3]: Adds S3 support to DVC.
+awscli: AWS Command Line Interface for authentication.
+4️⃣ Remove Existing DVC Remote (If Any)
+Run:
+
+sh
+Copy
+Edit
+dvc remote remove myremote
+This removes any previous remote named myremote.
+5️⃣ Configure AWS CLI for Authentication
+Run:
+
+sh
+Copy
+Edit
+aws configure
+Enter the AWS Access Key and Secret Key from Step 2.
+Set region (e.g., us-east-1).
+Keep output format as default (press Enter).
+6️⃣ Add an S3 Remote to DVC
+Run:
+
+sh
+Copy
+Edit
+dvc remote add -d myremote s3://campusxproject2bucket
+myremote: Name of the remote storage.
+-d: Sets it as the default DVC remote.
+s3://campusxproject2bucket: Path to the S3 bucket.
+7️⃣ Add Changes to Git
+Run:
+
+sh
+Copy
+Edit
+git add .
+This stages all changes for commit.
+8️⃣ Commit Changes to Git
+Run:
+
+sh
+Copy
+Edit
+git commit -m "Configured DVC with S3 remote"
+Saves the changes in Git history.
+9️⃣ Push Data to S3 Using DVC
+Run:
+
+sh
+Copy
+Edit
+dvc push
+Uploads tracked files to S3.
+🔟 Push Code to GitHub
+Run:
+
+sh
+Copy
+Edit
+git push origin main
+Pushes the code repository to GitHub.
+✅ Final Check
+Run dvc remote list to verify the remote is added.
+Run dvc status to check if any changes need to be pushed.
+Now, your DVC is configured with AWS S3 as remote storage. 🚀
+
+s3 bucket:
+  Amazon Resource Name (ARN)
+arn:aws:s3:::yt-chrome-plugin-bucket
+
+
+If you want to install DVC with S3 support, you should use the following command:
+
+
+pip install dvc[s3]
+
+dvc remote add -d myremote s3://yt-chrome-plugin-bucket

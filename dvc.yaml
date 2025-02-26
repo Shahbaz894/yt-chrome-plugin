@@ -11,10 +11,36 @@ stages:
   data_preprocessing:
    cmd: python chrome-plugin\src\data\data_preprocessing.py
    deps:
-    - data\raw\train.csv
-    - data\raw\test.csv
+    - chrome-plugin\data\raw\train.csv
+    - chrome-plugin\data\raw\test.csv
     - chrome-plugin\src\data\data_preprocessing.py
    outs:
    - chrome-plugin\data\interim
-     
+    
+  
+  model_building:
+    cmd: python chrome-plugin\src\models\model_building.py
+    deps:
+    - chrome-plugin\data\raw\train.csv
+    - chrome-plugin\src\models\model_building.py
+    params:
+    - model_building.max_features
+    - model_building.ngram_range
+    - model_building.learning_rate
+    - model_building.max_depth
+    - model_building.n_estimators
+    outs:
+    - lgbm_model.pkl
+    - tfidf_vectorizer.pkl
+    
           
+  model_evaluation:
+    cmd: python chrome-plugin/src/models/model_evalaution.py
+    deps:
+    - lgbm_model.pkl
+    - tfidf_vectorizer.pkl
+    - chrome-plugin/data/interim/train_preprocessed.csv
+    - chrome-plugin/data/interim/test_preprocessed.csv
+    - chrome-plugin/src/models/model_evalaution.py
+    outs:
+    - experiment_info.json

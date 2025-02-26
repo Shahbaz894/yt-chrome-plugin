@@ -1,0 +1,14 @@
+2025-02-24 12:58:00,483 - model_building - ERROR - File not found: E:\yt-chrome-plugin\chrome-plugin\params.yaml
+2025-02-24 12:58:00,484 - model_building - ERROR - Failed to complete the feature engineering and model building process: 'NoneType' object is not subscriptable
+2025-02-24 13:01:48,904 - model_building - ERROR - File not found: E:\yt-chrome-plugin\chrome-plugin\params.yaml
+2025-02-24 13:01:48,907 - model_building - ERROR - Failed to complete the feature engineering and model building process: 'NoneType' object is not subscriptable
+2025-02-24 13:05:55,175 - model_building - ERROR - Unexpected error occurred while loading the data: [Errno 2] No such file or directory: 'E:\\yt-chrome-plugin\\chrome-plugin/data/interim/train_processed.csv'
+2025-02-24 13:05:55,175 - model_building - ERROR - Failed to complete the feature engineering and model building process: [Errno 2] No such file or directory: 'E:\\yt-chrome-plugin\\chrome-plugin/data/interim/train_processed.csv'
+2025-02-24 15:31:47,479 - model_building - ERROR - Unexpected error occurred while loading the data: [Errno 2] No such file or directory: 'E:\\yt-chrome-plugin\\chrome-plugin/data/interim/train_processed.csv'
+2025-02-24 15:31:47,480 - model_building - ERROR - Failed to complete the feature engineering and model building process: [Errno 2] No such file or directory: 'E:\\yt-chrome-plugin\\chrome-plugin/data/interim/train_processed.csv'
+2025-02-24 15:41:39,467 - model_building - ERROR - Unexpected error occurred while loading the data: [Errno 22] Invalid argument: 'E:\\yt-chrome-plugin\\chrome-plugin\\data\\interim\\interim\train_preprocessed.csv'
+2025-02-24 15:41:39,468 - model_building - ERROR - Failed to complete the feature engineering and model building process: [Errno 22] Invalid argument: 'E:\\yt-chrome-plugin\\chrome-plugin\\data\\interim\\interim\train_preprocessed.csv'
+2025-02-24 15:43:29,799 - model_building - ERROR - Error during LightGBM model training: module 'lightgbm' has no attribute 'LGMClassifier'
+2025-02-24 15:43:29,800 - model_building - ERROR - Failed to complete the feature engineering and model building process: module 'lightgbm' has no attribute 'LGMClassifier'
+2025-02-26 18:48:18,797 - model_building - ERROR - Unexpected error occurred while loading the data: [Errno 2] No such file or directory: 'E:\\yt-chrome-plugin\\chrome-plugin/data/interim/interim/train_preprocessed.csv'
+2025-02-26 18:48:18,798 - model_building - ERROR - Failed to complete the model building process: [Errno 2] No such file or directory: 'E:\\yt-chrome-plugin\\chrome-plugin/data/interim/interim/train_preprocessed.csv'

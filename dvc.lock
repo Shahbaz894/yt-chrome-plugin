@@ -9,10 +9,88 @@ stages:
       size: 8147
     params:
       params.yaml:
-        data_ingestion.test_size: 0.22
+        data_ingestion.test_size: 0.2
     outs:
     - path: chrome-plugin/data/raw
       hash: md5
-      md5: 4dfc4db1068e06422c36c73a8a7b3afa.dir
+      md5: e13bcce40396cd334c8a7a334868166a.dir
       size: 6919701
       nfiles: 2
+  data_preprocessing:
+    cmd: python chrome-plugin\src\data\data_preprocessing.py
+    deps:
+    - path: chrome-plugin\data\raw\test.csv
+      hash: md5
+      md5: ea97ba82a4a25627bf4ffb52572484ea
+      size: 1348612
+    - path: chrome-plugin\data\raw\train.csv
+      hash: md5
+      md5: 1bd422dd6d135bced1d6c64a3e84a45d
+      size: 5571089
+    - path: chrome-plugin\src\data\data_preprocessing.py
+      hash: md5
+      md5: 0f1fed3021f26bb04b934331b66aea7e
+      size: 4796
+    outs:
+    - path: chrome-plugin\data\interim
+      hash: md5
+      md5: 42cea2ddceced1e6c5d4a80f9e9b560d.dir
+      size: 5106539
+      nfiles: 2
+  model_building:
+    cmd: python chrome-plugin\src\models\model_building.py
+    deps:
+    - path: chrome-plugin\data\raw\train.csv
+      hash: md5
+      md5: 1bd422dd6d135bced1d6c64a3e84a45d
+      size: 5571089
+    - path: chrome-plugin\src\models\model_building.py
+      hash: md5
+      md5: 45a057849e6ce0b0729d00294660fa36
+      size: 5454
+    params:
+      params.yaml:
+        model_building.learning_rate: 0.09
+        model_building.max_depth: 21
+        model_building.max_features: 10000
+        model_building.n_estimators: 367
+        model_building.ngram_range:
+        - 1
+        - 3
+    outs:
+    - path: lgbm_model.pkl
+      hash: md5
+      md5: a21203ae0fe88c402cb4ff6061f31802
+      size: 4139106
+    - path: tfidf_vectorizer.pkl
+      hash: md5
+      md5: 12395becbf7ad1723c97ae88380043df
+      size: 384084
+  model_evaluation:
+    cmd: python chrome-plugin/src/models/model_evalaution.py
+    deps:
+    - path: chrome-plugin/data/interim/test_preprocessed.csv
+      hash: md5
+      md5: 6cc425c17946864482f5c9d1606943b4
+      size: 994862
+    - path: chrome-plugin/data/interim/train_preprocessed.csv
+      hash: md5
+      md5: 6fa3b6236c52aa17f583d9a26ff95742
+      size: 4111677
+    - path: chrome-plugin/src/models/model_evalaution.py
+      hash: md5
+      md5: 5a1d5b74314d01e1ee110790dbe2c34e
+      size: 7417
+    - path: lgbm_model.pkl
+      hash: md5
+      md5: a21203ae0fe88c402cb4ff6061f31802
+      size: 4139106
+    - path: tfidf_vectorizer.pkl
+      hash: md5
+      md5: 12395becbf7ad1723c97ae88380043df
+      size: 384084
+    outs:
+    - path: experiment_info.json
+      hash: md5
+      md5: 9bd9e81a80b6a6847eedb115f272030a
+      size: 87
