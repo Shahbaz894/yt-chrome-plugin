@@ -84,3 +84,5 @@ target/
 .mypy_cache/
 venv
 venv\
+chrome-plugin/data/raw/
+

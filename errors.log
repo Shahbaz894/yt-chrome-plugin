@@ -1,0 +1,2 @@
+2025-03-03 14:57:39,600 - data_ingestion - ERROR - Unexpected error occurred while loading the data: <urlopen error [Errno 11001] getaddrinfo failed>
+2025-03-03 14:57:39,601 - data_ingestion - ERROR - Failed to complete the data ingestion process: <urlopen error [Errno 11001] getaddrinfo failed>

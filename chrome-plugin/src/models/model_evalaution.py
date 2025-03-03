@@ -116,7 +116,7 @@ def log_confusion_matrix(cm, dataset_name):
 def main():
     mlflow.set_tracking_uri("http://ec2-54-252-23-89.ap-southeast-2.compute.amazonaws.com:5000/")
 
-    mlflow.set_experiment('dvc-pipeline-runs')
+    mlflow.set_experiment('dvc-pipeline-runs -project')
     with mlflow.start_run() as run:
         try:
              # Get project root directory
