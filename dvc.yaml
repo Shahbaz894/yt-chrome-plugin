@@ -1,46 +1,50 @@
 stages:
   data_ingestion:
-    cmd: python chrome-plugin\src\data\data_ingestion.py
+    cmd: python chrome-plugin/src/data/data_ingestion.py
     deps:
-      - chrome-plugin\src\data\data_ingestion.py
+      - chrome-plugin/src/data/data_ingestion.py
     params:
       - data_ingestion.test_size
     outs:
       - chrome-plugin/data/raw  # Mark it as a directory
-    
+
   data_preprocessing:
-   cmd: python chrome-plugin\src\data\data_preprocessing.py
-   deps:
-    - chrome-plugin\data\raw\train.csv
-    - chrome-plugin\data\raw\test.csv
-    - chrome-plugin\src\data\data_preprocessing.py
-   outs:
-   - chrome-plugin\data\interim
-    
-  
-  model_building:
-    cmd: python chrome-plugin\src\models\model_building.py
+    cmd: python chrome-plugin/src/data/data_preprocessing.py
     deps:
-    - chrome-plugin\data\raw\train.csv
-    - chrome-plugin\src\models\model_building.py
-    params:
-    - model_building.max_features
-    - model_building.ngram_range
-    - model_building.learning_rate
-    - model_building.max_depth
-    - model_building.n_estimators
+      - chrome-plugin/data/raw/train.csv
+      - chrome-plugin/data/raw/test.csv
+      - chrome-plugin/src/data/data_preprocessing.py
     outs:
-    - lgbm_model.pkl
-    - tfidf_vectorizer.pkl
-    
-          
+      - chrome-plugin/data/interim
+
+  model_building:
+    cmd: python chrome-plugin/src/models/model_building.py
+    deps:
+      - chrome-plugin/data/interim/train_preprocessed.csv  # Ensure correct dataset
+      - chrome-plugin/src/models/model_building.py
+    params:
+      - model_building.max_features
+      - model_building.ngram_range
+      - model_building.learning_rate
+      - model_building.max_depth
+      - model_building.n_estimators
+    outs:
+      - lgbm_model.pkl
+      - tfidf_vectorizer.pkl
+
   model_evaluation:
     cmd: python chrome-plugin/src/models/model_evalaution.py
     deps:
-    - lgbm_model.pkl
-    - tfidf_vectorizer.pkl
-    - chrome-plugin/data/interim/train_preprocessed.csv
-    - chrome-plugin/data/interim/test_preprocessed.csv
-    - chrome-plugin/src/models/model_evalaution.py
+      - lgbm_model.pkl
+      - tfidf_vectorizer.pkl
+      - chrome-plugin/data/interim/train_preprocessed.csv
+      - chrome-plugin/data/interim/test_preprocessed.csv
+      - chrome-plugin/src/models/model_evalaution.py
     outs:
-    - experiment_info.json
+      - experiment_info.json
+
+  model_registration:
+    cmd: python chrome-plugin/src/models/register_model.py
+    deps:
+      - experiment_info.json
+      - chrome-plugin/src/models/register_model.py
