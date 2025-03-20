@@ -79,8 +79,8 @@ stages:
       size: 3972170
     - path: chrome-plugin/src/models/model_evalaution.py
       hash: md5
-      md5: 51631824df570ce06b051e04e0f8137b
-      size: 7032
+      md5: c8907f46538295530f406849e956686d
+      size: 6946
     - path: lgbm_model.pkl
       hash: md5
       md5: 223bde5a5c408a347cdbdfddc02e7666
@@ -92,16 +92,16 @@ stages:
     outs:
     - path: experiment_info.json
       hash: md5
-      md5: de78a83647aa4e41e0319868c5be3d07
+      md5: 8aca0de2088a3e8b52ce9dd0d9eaa2e9
       size: 87
   model_registration:
     cmd: python chrome-plugin/src/models/register_model.py
     deps:
     - path: chrome-plugin/src/models/register_model.py
       hash: md5
-      md5: 6cc9f288a0adef86421b27309fc772cc
-      size: 2578
+      md5: 0e7e3e8cb560b8acd763237ff15b253c
+      size: 2481
     - path: experiment_info.json
       hash: md5
-      md5: de78a83647aa4e41e0319868c5be3d07
+      md5: 8aca0de2088a3e8b52ce9dd0d9eaa2e9
       size: 87
