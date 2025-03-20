@@ -122,10 +122,11 @@ Keep output format as default (press Enter).
 Run:
 
 
-dvc remote add -d myremote s3://campusxproject2bucket
+<!-- dvc remote add -d myremote s3://campusxproject2bucket -->
+dvc remote add -d myremote s3://yt-chrome-plugin
 myremote: Name of the remote storage.
 -d: Sets it as the default DVC remote.
-s3://campusxproject2bucket: Path to the S3 bucket.
+s3://yt-chrome-plugin: Path to the S3 bucket.
 7️⃣ Add Changes to Git
 Run:
 
@@ -153,7 +154,7 @@ Now, your DVC is configured with AWS S3 as remote storage. 🚀
 
 s3 bucket:
   Amazon Resource Name (ARN)
-arn:aws:s3:::yt-chrome-plugin-bucket
+arn:aws:s3:::yt-chrome-plugin
 
 
 If you want to install DVC with S3 support, you should use the following command:

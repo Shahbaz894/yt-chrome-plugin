@@ -1,0 +1,50 @@
+# Update the package lists to get the latest available versions
+sudo apt update
+
+# Install Python3 and pip (Python package manager)
+sudo apt install -y python3-pip
+
+# Install pipx (a tool to install and run Python applications in isolated environments)
+sudo apt install -y pipx
+
+# Ensure pipx is properly set up in the system path
+sudo pipx ensurepath
+
+# Install pipenv using pipx (Pipenv is a virtual environment and dependency manager for Python)
+pipx install pipenv
+
+# Add pipenv's installation directory to the system PATH
+export PATH=$PATH:/home/ubuntu/.local/bin
+
+# Persist the PATH change so it remains available in new shell sessions
+echo 'export PATH=$PATH:/home/ubuntu/.local/bin' >> ~/.bashrc
+
+# Reload the shell configuration to apply the changes
+source ~/.bashrc
+
+# Create a directory for MLflow
+mkdir mlflow
+cd mlflow
+
+# Start a new virtual environment using pipenv
+pipenv shell
+
+# Install required dependencies inside the virtual environment
+pipenv install setuptools  # Required for Python package distribution
+pipenv install awscli      # AWS CLI to interact with AWS services
+pipenv install boto3       # Boto3, AWS SDK for Python
+
+# Configure AWS credentials (You will be prompted for AWS access keys)
+aws configure
+
+# Start the MLflow server, setting it to listen on all network interfaces
+# The default artifact storage location is set to an S3 bucket
+mlflow server -h 0.0.0.0 --default-artifact-root s3://yt-chrome-plugin
+
+# Set the MLflow Tracking URI to the public EC2 instance's IP address
+export MLFLOW_TRACKING_URI=http://<Public-IPv4-DNS>:5000  # Fixed missing "0" in port
+
+# Set the MLflow tracking URI inside Python (This should be inside a Python script, not in the shell)
+python -c "import mlflow; mlflow.set_tracking_uri('http://<Public-IPv4-DNS>:5000')"
+#this is tracking uri
+http://ec2-13-238-120-177.ap-southeast-2.compute.amazonaws.com:5000/
