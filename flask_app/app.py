@@ -18,6 +18,12 @@ nltk.download("wordnet")
 app = Flask(__name__)
 CORS(app)
 
+
+# '/health change to / for trying
+@app.route('/health', methods=['GET'])
+def health_check():
+    return jsonify({"status": "OK"}), 200
+
 # ✅ Function to preprocess text comments
 def preprocess_comments(comment):
     try:
@@ -81,4 +87,4 @@ def predict():
 
 # ✅ Run Flask server
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+     app.run(host='0.0.0.0', port=5000, debug=True)
